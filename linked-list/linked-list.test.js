@@ -1,20 +1,37 @@
 const LinkedList = require("./linked-list");
 
 describe("Linked List", function() {
-  it("adds an item to the end of the list using push", function() {
+  it("adds an item to the list using push", function() {
     const expected = 1;
     const linkedList = new LinkedList();
     linkedList.push(expected);
     const actual = linkedList.size();
     expect(actual).toEqual(expected);
   });
-  it("removes an item from the end of the list using pop", function() {
+  it("adds an item to the end of the list using push", function () {
+    const afterFirst = 2;
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(afterFirst);
+    const isAfter = linkedList.item(1);
+    expect(isAfter).toEqual(afterFirst);
+  });
+  it("removes an item from the list using pop", function() {
     const expected = 0;
     const linkedList = new LinkedList();
     linkedList.push(expected);
     linkedList.pop();
     const actual = linkedList.size();
     expect(actual).toEqual(expected);
+  });
+  it("removes an item from the end of the list using pop", function() {
+    const expected = 0;
+    const linkedList = new LinkedList();
+    linkedList.push(1);
+    linkedList.push(expected);
+    const actual = linkedList.pop();
+    expect(actual).toEqual(expected);
+    expect(linkedList.size()).toEqual(1);
   });
   it("returns an item by index", function() {
     const expected = 2;
