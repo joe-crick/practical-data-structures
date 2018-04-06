@@ -85,13 +85,13 @@ describe("Linked List", function() {
   });
   it("converts an array to a LinkedList using fromArray", function() {
     const expected = 3;
-    const linkedList = LinkedList.fromArray([1,2,3]);
+    const linkedList = LinkedList.fromArray([1, 2, 3]);
     const actual = linkedList.size();
     expect(actual).toEqual(expected);
   });
   it("returns true when every is called if every element matches the predicate", function() {
     const expected = true;
-    const linkedList = LinkedList.fromArray([1,2,3,4,5]);
+    const linkedList = LinkedList.fromArray([1, 2, 3, 4, 5]);
     const actual = linkedList.every(function(item) {
       return item < 10;
     });
@@ -99,7 +99,7 @@ describe("Linked List", function() {
   });
   it("returns false when every is called if an element doesn't match the predicate", function() {
     const expected = false;
-    const linkedList = LinkedList.fromArray([1,2,3,4,10]);
+    const linkedList = LinkedList.fromArray([1, 2, 3, 4, 10]);
     const actual = linkedList.every(function(item) {
       return item < 10;
     });
@@ -107,10 +107,24 @@ describe("Linked List", function() {
   });
   it("filters a list with a predicate", function() {
     const expected = 3;
-    const linkedList = LinkedList.fromArray([1,2,3,4,5]);
-    const actual = linkedList.filter(function(item) {
-      return item < 4;
-    }).size();
-    expect(actual).toEqual(expected)
-  })
+    const linkedList = LinkedList.fromArray([1, 2, 3, 4, 5]);
+    const actual = linkedList
+      .filter(function(item) {
+        return item < 4;
+      })
+      .size();
+    expect(actual).toEqual(expected);
+  });
+  it("returns true if an item is contained in a list when includes is called", function() {
+    const expected = true;
+    const linkedList = LinkedList.fromArray([1, 2, "test", 4, 5]);
+    const actual = linkedList.includes("test");
+    expect(actual).toEqual(expected);
+  });
+  it("returns false if an item is NOT contained in a list when includes is called", function() {
+    const expected = false;
+    const linkedList = LinkedList.fromArray([1, 2, "test", 4, 5]);
+    const actual = linkedList.includes(22);
+    expect(actual).toEqual(expected);
+  });
 });

@@ -241,7 +241,7 @@ module.exports = class LinkedList {
    */
   filter(fn) {
     if (isEmptyList(this._head)) {
-      return false;
+      return null;
     } else {
       const list = new LinkedList();
       let current = this._head;
@@ -257,4 +257,25 @@ module.exports = class LinkedList {
       return list;
     }
   }
+
+  /**
+   * Determines whether a Linked List includes a certain element,
+   * @param item
+   * @return {boolean}
+   */
+  includes(item) {
+    if(isEmptyList(this._head)) {
+      return false;
+    } else {
+      let current = this._head;
+      while (current) {
+        if (current.data === item) {
+          return true;
+        }
+        current = current.next;
+      }
+      return false;
+    }
+  }
+
 };
