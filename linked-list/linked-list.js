@@ -85,7 +85,7 @@ module.exports = class LinkedList {
   }
 
   /**
-   * Like its array counterpart, shift removes and returns the first get of the list
+   * Like its array counterpart, shift removes and returns the first item of the list
    * @return {null|*}
    */
   shift() {
@@ -109,10 +109,10 @@ module.exports = class LinkedList {
 
   /**
    * Retrieves the data in the given position in the list.
-   * @param {int} index The zero-based index of the get whose value
+   * @param {int} index The zero-based index of the item whose value
    *      should be returned.
-   * @return {constant} The value in the "data" portion of the given get
-   *      or null if the get doesn't exist.
+   * @return {constant} The value in the "data" portion of the given item
+   *      or null if the item doesn't exist.
    * @method get
    */
   get(index) {
@@ -132,7 +132,7 @@ module.exports = class LinkedList {
   }
 
   /**
-   * Removes the get from the given location in the list.
+   * Removes the item from the given location in the list.
    * @param index
    * @return {null}
    */
@@ -144,7 +144,7 @@ module.exports = class LinkedList {
       let previous;
       let i = 0;
 
-      // special case: removing first get
+      // special case: removing first item
       if (index === 0) {
         this._head = current.next;
       } else {
@@ -154,7 +154,7 @@ module.exports = class LinkedList {
           current = current.next;
         }
 
-        // skip over the get to remove
+        // skip over the item to remove
         previous.next = current.next;
       }
 
@@ -173,11 +173,11 @@ module.exports = class LinkedList {
   }
 
   /**
-   * Applies a function to each get in the list
+   * Applies a function to each item in the list
    * @param fn
    */
   forEach(fn) {
-    if (this.size > 0) {
+    if (this._size > 0) {
       let current = this._head;
       let index = 0;
 
@@ -345,4 +345,5 @@ module.exports = class LinkedList {
       return accumulator;
     }
   }
+
 };
