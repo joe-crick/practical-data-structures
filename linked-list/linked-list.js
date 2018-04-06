@@ -264,7 +264,7 @@ module.exports = class LinkedList {
    * @return {boolean}
    */
   includes(item) {
-    if(isEmptyList(this._head)) {
+    if (isEmptyList(this._head)) {
       return false;
     } else {
       let current = this._head;
@@ -284,7 +284,7 @@ module.exports = class LinkedList {
    * @return {*}
    */
   indexOf(item) {
-    if(isEmptyList(this._head)) {
+    if (isEmptyList(this._head)) {
       return false;
     } else {
       let current = this._head;
@@ -300,4 +300,27 @@ module.exports = class LinkedList {
     }
   }
 
+  /**
+   * Joins all elements of the list into a string, each element separated by the provided delimiter
+   * @param delimiter
+   */
+  join(delimiter) {
+    if (isEmptyList(this._head)) {
+      return null;
+    } else {
+      let current = this._head;
+      let str = "";
+      let index = 1;
+      while (current) {
+        if (index < this._size) {
+          str += current.data + delimiter;
+        } else {
+          str += current.data;
+        }
+        ++index;
+        current = current.next;
+      }
+      return str;
+    }
+  }
 };

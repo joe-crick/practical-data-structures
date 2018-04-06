@@ -139,4 +139,10 @@ describe("Linked List", function() {
     const actual = linkedList.indexOf("cat");
     expect(actual).toEqual(expected);
   });
+  it("joins all the elements of the list", function() {
+    const expected = "1,2,3,4,5";
+    const linkedList = LinkedList.fromArray([1, 2, 3, 4, 5]);
+    const actual = linkedList.join(",");
+    expect(actual).toEqual(expected);
+  });
 });
