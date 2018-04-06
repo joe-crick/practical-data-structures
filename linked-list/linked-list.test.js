@@ -145,4 +145,13 @@ describe("Linked List", function() {
     const actual = linkedList.join(",");
     expect(actual).toEqual(expected);
   });
+  it("reduces a LinkedList", function() {
+    const expected = { 1: 1, 2: 2, 3: 3 };
+    const linkedList = LinkedList.fromArray([1, 2, 3]);
+    const actual = linkedList.reduce(function(acc, cur) {
+      acc[cur] = cur;
+      return acc;
+    }, {});
+    expect(JSON.stringify(actual)).toEqual(JSON.stringify(expected));
+  });
 });

@@ -323,4 +323,26 @@ module.exports = class LinkedList {
       return str;
     }
   }
+
+  /**
+   *
+   * @param fn
+   * @param initialValue
+   * @return {*}
+   */
+  reduce(fn, initialValue) {
+    if (isEmptyList(this._head)) {
+      throw new Error("Unable to call reduce on an empty List.");
+    } else {
+      let current = this._head;
+      let index = 0;
+      let accumulator = initialValue;
+      while (current) {
+        accumulator = fn(accumulator, current.data, index, this);
+        ++index;
+        current = current.next;
+      }
+      return accumulator;
+    }
+  }
 };
