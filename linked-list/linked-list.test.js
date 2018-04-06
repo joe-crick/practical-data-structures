@@ -127,4 +127,16 @@ describe("Linked List", function() {
     const actual = linkedList.includes(22);
     expect(actual).toEqual(expected);
   });
+  it("returns the correct index of an item in the list when indexOf is called", function() {
+    const expected = 2;
+    const linkedList = LinkedList.fromArray([1, 2, "test", 4, 5]);
+    const actual = linkedList.indexOf("test");
+    expect(actual).toEqual(expected);
+  });
+  it("returns null when an item cannot be found and indexOf is called", function() {
+    const expected = null;
+    const linkedList = LinkedList.fromArray([1, 2, "test", 4, 5]);
+    const actual = linkedList.indexOf("cat");
+    expect(actual).toEqual(expected);
+  });
 });

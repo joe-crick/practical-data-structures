@@ -278,4 +278,26 @@ module.exports = class LinkedList {
     }
   }
 
+  /**
+   * Returns the first index at which a given element can be found in the list, or null if it is not present.
+   * @param item
+   * @return {*}
+   */
+  indexOf(item) {
+    if(isEmptyList(this._head)) {
+      return false;
+    } else {
+      let current = this._head;
+      let index = 0;
+      while (current) {
+        if (current.data === item) {
+          return index;
+        }
+        ++index;
+        current = current.next;
+      }
+      return null;
+    }
+  }
+
 };
