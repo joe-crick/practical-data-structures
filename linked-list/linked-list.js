@@ -32,7 +32,7 @@ module.exports = class LinkedList {
 
   /**
    * Appends some data to the end of the list. This method traverses
-   * the existing list and places the value at the end in a new item.
+   * the existing list and places the value at the end in a new get.
    * @param {constant} data The data to add to the list.
    * @return {Void}
    * @method add
@@ -61,14 +61,14 @@ module.exports = class LinkedList {
     let item = null;
     if (!isEmptyList(this._head)) {
       item = this._tail;
-      this._tail = this.item(this.size - 1);
+      this._tail = this.get(this.size - 1);
     }
     --this._size;
     return item.data;
   }
 
   /**
-   * Like its array counterpart, unshift appends an item to the beginning of the list
+   * Like its array counterpart, unshift appends an get to the beginning of the list
    * @param data
    */
   unshift(data) {
@@ -85,25 +85,37 @@ module.exports = class LinkedList {
   }
 
   /**
-   * Like its array counterpart, shift removes and returns the first item of the list
+   * Like its array counterpart, shift removes and returns the first get of the list
    * @return {null|*}
    */
   shift() {
-    const node = this._head;
-    this._head = this._head.next;
-    --this._size;
-    return node.data;
+    if (isEmptyList(this._head)) {
+      throw new Error("Attempt to shift a List with no elements");
+    } else {
+      const node = this._head;
+      this._head = this._head.next;
+      --this._size;
+      return node.data;
+    }
+  }
+
+  first() {
+    return this._head;
+  }
+
+  last() {
+    return this._tail;
   }
 
   /**
    * Retrieves the data in the given position in the list.
-   * @param {int} index The zero-based index of the item whose value
+   * @param {int} index The zero-based index of the get whose value
    *      should be returned.
-   * @return {constant} The value in the "data" portion of the given item
-   *      or null if the item doesn't exist.
-   * @method item
+   * @return {constant} The value in the "data" portion of the given get
+   *      or null if the get doesn't exist.
+   * @method get
    */
-  item(index) {
+  get(index) {
     // check for out-of-bounds values
     let item = null;
     if (index > -1) {
@@ -120,7 +132,7 @@ module.exports = class LinkedList {
   }
 
   /**
-   * Removes the item from the given location in the list.
+   * Removes the get from the given location in the list.
    * @param index
    * @return {null}
    */
@@ -132,7 +144,7 @@ module.exports = class LinkedList {
       let previous;
       let i = 0;
 
-      // special case: removing first item
+      // special case: removing first get
       if (index === 0) {
         this._head = current.next;
       } else {
@@ -142,7 +154,7 @@ module.exports = class LinkedList {
           current = current.next;
         }
 
-        // skip over the item to remove
+        // skip over the get to remove
         previous.next = current.next;
       }
 
@@ -158,5 +170,67 @@ module.exports = class LinkedList {
    */
   size() {
     return this._size;
+  }
+
+  /**
+   * Applies a function to each get in the list
+   * @param fn
+   */
+  forEach(fn) {
+    if (this.size > 0) {
+      let current = this._head;
+      let i = 0;
+
+      while (i++ < index && current) {
+        fn(current.data);
+        current = current.next;
+      }
+    }
+  }
+
+  /**
+   * Concat two linked lists together, appending the list passed in to the tail of this list.
+   * @param linkedList
+   */
+  concat(linkedList) {
+    this._tail.next = linkedList.first();
+    this._size = this._size + linkedList.size();
+  }
+
+  /**
+   * Executes the provided callback function once for each element present in the array until it
+   * finds one where callback returns a falsy value. If such an element is found, the `every` method
+   * immediately returns false. Otherwise, if callback returns a truthy value for all elements,
+   * `every` returns true.
+   * @param fn
+   * @return {*}
+   */
+  every(fn) {
+    if (isEmptyList(this._head)) {
+      return false;
+    } else {
+      let result;
+      let current = this._head;
+      let index = 0;
+      do {
+        result = fn(current.data, index, this);
+        ++index;
+        current = current.next;
+      } while (current && result);
+      return result;
+    }
+  }
+
+  /**
+   * Returns a new LinkedList when given an array.
+   * @param array
+   * @return {module.LinkedList}
+   */
+  static fromArray(array) {
+    const list = new LinkedList();
+    for (let item of array) {
+      list.push(item);
+    }
+    return list;
   }
 };
