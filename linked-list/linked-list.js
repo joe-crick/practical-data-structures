@@ -179,10 +179,11 @@ module.exports = class LinkedList {
   forEach(fn) {
     if (this.size > 0) {
       let current = this._head;
-      let i = 0;
+      let index = 0;
 
-      while (i++ < index && current) {
-        fn(current.data);
+      while (current) {
+        fn(current.data, index, this);
+        ++index;
         current = current.next;
       }
     }
@@ -232,5 +233,28 @@ module.exports = class LinkedList {
       list.push(item);
     }
     return list;
+  }
+
+  /**
+   * Creates a new LinkedList with all elements that pass the test implemented by the provided function.
+   * @param fn
+   */
+  filter(fn) {
+    if (isEmptyList(this._head)) {
+      return false;
+    } else {
+      const list = new LinkedList();
+      let current = this._head;
+      let index = 0;
+
+      while (current) {
+        if (fn(current.data, index, this)) {
+          list.push(current);
+        }
+        ++index;
+        current = current.next;
+      }
+      return list;
+    }
   }
 };

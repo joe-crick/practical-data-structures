@@ -105,4 +105,12 @@ describe("Linked List", function() {
     });
     expect(actual).toEqual(expected);
   });
+  it("filters a list with a predicate", function() {
+    const expected = 3;
+    const linkedList = LinkedList.fromArray([1,2,3,4,5]);
+    const actual = linkedList.filter(function(item) {
+      return item < 4;
+    }).size();
+    expect(actual).toEqual(expected)
+  })
 });
