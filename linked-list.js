@@ -236,6 +236,27 @@ module.exports = class LinkedList {
   }
 
   /**
+   * Map items in the list
+   * @param fn
+   * @return {module.LinkedList}
+   */
+  map(fn) {
+    let list = new LinkedList();
+    if (this._size > 0) {
+      const list = new LinkedList();
+      let current = this._head;
+      let index = 0;
+
+      while (current) {
+        list.push(fn(current.data, index, this));
+        ++index;
+        current = current.next;
+      }
+    }
+    return list;
+  }
+
+  /**
    * Creates a new LinkedList with all elements that pass the test implemented by the provided function.
    * @param fn
    */

@@ -1,7 +1,6 @@
 {
-  "name": "practical_data_structures",
+  "name": "practical-data-structures",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "jest",

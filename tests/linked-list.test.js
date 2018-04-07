@@ -1,4 +1,4 @@
-const LinkedList = require("./linked-list");
+const LinkedList = require("../linked-list");
 
 describe("Linked List", function() {
   it("adds an get to the list using push", function() {
