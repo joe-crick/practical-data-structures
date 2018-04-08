@@ -21,7 +21,7 @@ function isEmptyList(head) {
 }
 
 /**
- * Linked List base on code by Nicholas C Zakas. Additional modifications are my own.
+ * Linked List based on code by Nicholas C. Zakas. Additional modifications are my own.
  */
 module.exports = class LinkedList {
   constructor() {
@@ -233,6 +233,23 @@ module.exports = class LinkedList {
       list.push(item);
     }
     return list;
+  }
+
+  /**
+   * Converts the LinkedList to an Array
+   * @return {Array}
+   */
+  toArray() {
+    const array = [];
+    if (this._size > 0) {
+      let current = this._head;
+
+      while (current) {
+        array.push(current.data);
+        current = current.next;
+      }
+    }
+    return array;
   }
 
   /**

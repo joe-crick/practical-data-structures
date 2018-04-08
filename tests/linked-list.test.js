@@ -154,4 +154,10 @@ describe("Linked List", function() {
     }, {});
     expect(JSON.stringify(actual)).toEqual(JSON.stringify(expected));
   });
+  it("converts a LinkedList to an array", function() {
+    const expected = [1, 2, 3];
+    const linkedList = LinkedList.fromArray(expected);
+    const actual = linkedList.toArray();
+    expect(JSON.stringify(actual)).toEqual(JSON.stringify(expected));
+  });
 });
