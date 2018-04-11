@@ -1,14 +1,14 @@
 const LinkedList = require("../linked-list");
 
 describe("Linked List", function() {
-  it("adds an get to the list using push", function() {
+  it("adds an item to the list using push", function() {
     const expected = 1;
     const linkedList = new LinkedList();
     linkedList.push(expected);
     const actual = linkedList.size();
     expect(actual).toEqual(expected);
   });
-  it("adds an get to the end of the list using push", function() {
+  it("adds an item to the end of the list using push", function() {
     const afterFirst = 2;
     const linkedList = new LinkedList();
     linkedList.push(1);
@@ -16,7 +16,7 @@ describe("Linked List", function() {
     const isAfter = linkedList.get(1);
     expect(isAfter).toEqual(afterFirst);
   });
-  it("removes an get from the list using pop", function() {
+  it("removes an item from the list using pop", function() {
     const expected = 0;
     const linkedList = new LinkedList();
     linkedList.push(expected);
@@ -24,7 +24,7 @@ describe("Linked List", function() {
     const actual = linkedList.size();
     expect(actual).toEqual(expected);
   });
-  it("removes an get from the end of the list using pop", function() {
+  it("removes an item from the end of the list using pop", function() {
     const expected = 0;
     const linkedList = new LinkedList();
     linkedList.push(1);
@@ -33,7 +33,7 @@ describe("Linked List", function() {
     expect(actual).toEqual(expected);
     expect(linkedList.size()).toEqual(1);
   });
-  it("returns an get by index", function() {
+  it("returns an item by index", function() {
     const expected = 2;
     const linkedList = new LinkedList();
     linkedList.push(1);
@@ -42,7 +42,7 @@ describe("Linked List", function() {
     const actual = linkedList.get(1);
     expect(actual).toEqual(expected);
   });
-  it("prepends an get to the list when using unshift", function() {
+  it("prepends an item to the list when using unshift", function() {
     const expected = 2;
     const linkedList = new LinkedList();
     linkedList.push(1);
@@ -51,7 +51,7 @@ describe("Linked List", function() {
     const actual = linkedList.get(0);
     expect(actual).toEqual(expected);
   });
-  it("removes the first get from the list when using shift", function() {
+  it("removes the first item from the list when using shift", function() {
     const expected = 1;
     const linkedList = new LinkedList();
     linkedList.push(expected);
@@ -62,7 +62,7 @@ describe("Linked List", function() {
     expect(actual).toEqual(expected);
     expect(linkedList.size()).toEqual(2);
   });
-  it("removes and returns an get from the list by index using remove", function() {
+  it("removes and returns an item from the list by index using remove", function() {
     const expected = 2;
     const linkedList = new LinkedList();
     linkedList.push(1);
